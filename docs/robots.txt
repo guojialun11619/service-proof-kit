@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://guojialun11619.github.io/service-proof-kit/sitemap.xml
