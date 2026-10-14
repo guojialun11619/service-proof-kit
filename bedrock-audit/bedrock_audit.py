@@ -68,8 +68,14 @@ def valid_uuid(value: Any) -> bool:
 
 
 def safe_member(name: str) -> bool:
-    path = PurePosixPath(name)
-    return not path.is_absolute() and ".." not in path.parts
+    normalized = name.replace("\\", "/")
+    path = PurePosixPath(normalized)
+    return (
+        "\x00" not in name
+        and not path.is_absolute()
+        and ".." not in path.parts
+        and re.match(r"^[A-Za-z]:/", normalized) is None
+    )
 
 
 def discover_manifests(names: Iterable[str]) -> list[str]:
@@ -84,7 +90,11 @@ def get_root(manifest_path: str) -> str:
 def read_json(zf: zipfile.ZipFile, path: str, findings: list[Finding]) -> dict[str, Any] | None:
     try:
         raw = zf.read(path)
-        return json.loads(raw.decode("utf-8-sig"))
+        parsed = json.loads(raw.decode("utf-8-sig"))
+        if not isinstance(parsed, dict):
+            findings.append(finding("ERROR", "MANIFEST_SHAPE", path, "Manifest root must be a JSON object."))
+            return None
+        return parsed
     except UnicodeDecodeError as exc:
         findings.append(finding("ERROR", "MANIFEST_ENCODING", path, f"Manifest is not UTF-8: {exc}", "Save it as UTF-8 without binary data."))
     except json.JSONDecodeError as exc:

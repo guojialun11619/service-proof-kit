@@ -60,6 +60,25 @@ class CleanupTests(unittest.TestCase):
             self.assertEqual(result["changes"]["formula_like_cells"], 2)
             self.assertEqual(len(result["exceptions"]), 4)
 
+    def test_extra_fields_are_rejected_instead_of_dropped(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "in.csv"
+            source.write_text("id,name\n1,Alice,unexpected\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "more fields than the header"):
+                clean(source, root / "out.csv", root / "report.json")
+
+    def test_input_output_and_report_paths_must_be_distinct(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "in.csv"
+            output = root / "out.csv"
+            report = root / "report.json"
+            source.write_text("id\n1\n", encoding="utf-8")
+            for paths in ((source, source, report), (source, output, source), (source, output, output)):
+                with self.subTest(paths=paths), self.assertRaisesRegex(ValueError, "must be different"):
+                    clean(*paths)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -32,6 +32,9 @@ def sha256(path: Path) -> str:
 
 
 def clean(input_path: Path, output_path: Path, report_path: Path, dedupe_columns: list[str] | None = None) -> dict[str, Any]:
+    resolved = [path.resolve() for path in (input_path, output_path, report_path)]
+    if len(set(resolved)) != 3:
+        raise ValueError("Input, output, and report paths must be different; the source is never overwritten")
     blank_tokens = {"n/a", "na", "null", "none"}
     with input_path.open("r", newline="", encoding="utf-8-sig") as stream:
         reader = csv.DictReader(stream)
@@ -41,6 +44,9 @@ def clean(input_path: Path, output_path: Path, report_path: Path, dedupe_columns
         if len(set(headers)) != len(headers):
             raise ValueError("Headers become duplicated after whitespace trimming")
         rows = list(reader)
+        for source_row_number, row in enumerate(rows, start=2):
+            if None in row:
+                raise ValueError(f"Row {source_row_number} has more fields than the header; refusing silent data loss")
 
     dedupe_columns = dedupe_columns or headers
     unknown = sorted(set(dedupe_columns) - set(headers))
@@ -99,6 +105,7 @@ def clean(input_path: Path, output_path: Path, report_path: Path, dedupe_columns
             "formula_safety": "Flag cells beginning with =, +, -, or @ for review; preserve their values instead of guessing intent.",
         },
     }
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return report
 

@@ -9,7 +9,7 @@ Two deterministic, zero-dependency Python tools demonstrate bounded digital-serv
 
 Each folder contains a small input and the corresponding report/output so the delivery format can be inspected without uploading any data.
 
-The test suite contains 13 automated tests. The tools never claim facts they cannot verify: a structural Bedrock pass is not presented as universal in-game compatibility, and ambiguous CSV values are flagged rather than guessed.
+The test suite contains 17 automated tests. The tools never claim facts they cannot verify: a structural Bedrock pass is not presented as universal in-game compatibility, and ambiguous CSV values are flagged rather than guessed.
 
 ## Verify
 

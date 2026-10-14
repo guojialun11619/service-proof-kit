@@ -79,12 +79,31 @@ class AuditTests(unittest.TestCase):
             self.assertEqual(report["grade"], "FAIL")
             self.assertIn("MANIFEST_JSON", {item["code"] for item in report["findings"]})
 
+    def test_non_object_manifest_fails_without_crash(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "list-root.mcpack"
+            with zipfile.ZipFile(path, "w") as zf:
+                zf.writestr("manifest.json", "[]")
+            report = audit(path)
+            self.assertEqual(report["grade"], "FAIL")
+            self.assertIn("MANIFEST_SHAPE", {item["code"] for item in report["findings"]})
+
     def test_unsafe_archive_path_is_reported(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "unsafe.mcpack"
             with zipfile.ZipFile(path, "w") as zf:
                 zf.writestr("manifest.json", json.dumps(self.base_manifest()))
                 zf.writestr("../outside.txt", "unsafe")
+            report = audit(path)
+            self.assertEqual(report["grade"], "FAIL")
+            self.assertIn("UNSAFE_PATH", {item["code"] for item in report["findings"]})
+
+    def test_windows_style_traversal_is_reported(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "unsafe-windows.mcpack"
+            with zipfile.ZipFile(path, "w") as zf:
+                zf.writestr("manifest.json", json.dumps(self.base_manifest()))
+                zf.writestr("..\\outside.txt", "unsafe")
             report = audit(path)
             self.assertEqual(report["grade"], "FAIL")
             self.assertIn("UNSAFE_PATH", {item["code"] for item in report["findings"]})
