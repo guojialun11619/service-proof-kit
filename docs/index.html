@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bounded, evidence-first Bedrock add-on audits and traceable CSV cleanup pilots.">
+  <title>Evidence-first digital service pilots</title>
+  <style>
+    :root { --ink:#15253d; --muted:#5a6879; --teal:#0d9488; --pale:#e9f8f6; --line:#d9e2ec; --white:#fff; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); background:#f7fafc; font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:inherit; }
+    .hero { background:var(--ink); color:var(--white); padding:72px 24px 64px; }
+    .wrap { width:min(1080px,100%); margin:auto; }
+    .eyebrow { display:inline-block; padding:6px 12px; border-radius:999px; background:var(--teal); font-size:12px; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { max-width:760px; margin:18px 0 12px; font-size:clamp(38px,7vw,68px); line-height:1.03; letter-spacing:-.04em; }
+    .lead { max-width:690px; color:#d8e4ef; font-size:19px; }
+    .proof { margin-top:28px; display:flex; flex-wrap:wrap; gap:12px; }
+    .proof span { padding:8px 12px; border:1px solid #40506a; border-radius:8px; color:#d8e4ef; font-size:14px; }
+    main { padding:54px 24px 80px; }
+    h2 { margin:0 0 18px; font-size:clamp(26px,4vw,38px); letter-spacing:-.025em; }
+    .intro { max-width:740px; color:var(--muted); margin-bottom:28px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+    .card { background:var(--white); border:1px solid var(--line); border-radius:18px; padding:30px; box-shadow:0 12px 32px rgba(21,37,61,.06); }
+    .tag { color:var(--teal); font-size:13px; font-weight:750; text-transform:uppercase; letter-spacing:.06em; }
+    h3 { margin:8px 0 4px; font-size:26px; line-height:1.18; }
+    .price { margin:0 0 20px; color:var(--teal); font-size:22px; font-weight:780; }
+    ul { padding-left:20px; }
+    li { margin:8px 0; }
+    .boundary { padding:13px 15px; border-radius:10px; background:var(--pale); color:#315459; font-size:14px; }
+    .button { display:inline-block; margin-top:10px; padding:11px 16px; border-radius:9px; background:var(--ink); color:var(--white); text-decoration:none; font-weight:700; }
+    .section { margin-top:58px; }
+    .steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; counter-reset:step; }
+    .step { padding:20px; background:var(--white); border:1px solid var(--line); border-radius:14px; }
+    .step:before { counter-increment:step; content:"0" counter(step); display:block; color:var(--teal); font-weight:800; font-size:22px; }
+    .step strong { display:block; margin:8px 0 4px; }
+    .step p { margin:0; color:var(--muted); font-size:14px; }
+    .cta { margin-top:58px; padding:36px; border-radius:18px; background:var(--pale); }
+    .cta p { max-width:720px; }
+    footer { padding:24px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; text-align:center; }
+    @media (max-width:760px) { .grid,.steps { grid-template-columns:1fr; } .hero { padding-top:48px; } .card { padding:24px; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Bounded digital service pilots</span>
+      <h1>Small scope. Inspectable evidence. No invented certainty.</h1>
+      <p class="lead">Two fixed-starting-price services for technical files and tabular data. Originals are preserved, assumptions are written down, and every delivery includes a traceable report.</p>
+      <div class="proof" aria-label="Proof summary">
+        <span>13 automated tests</span><span>Python 3.9 / 3.11 / 3.13 CI</span><span>Standard library only</span><span>Public source</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <h2>Choose one focused outcome</h2>
+      <p class="intro">Pricing is a starting point for the exact scope below. A request is not an order until the acceptance criteria, timing, and payment terms are confirmed in writing.</p>
+      <section class="grid" aria-label="Services">
+        <article class="card">
+          <div class="tag">Minecraft Bedrock</div>
+          <h3>Add-on compatibility audit</h3>
+          <p class="price">CAD $49</p>
+          <ul>
+            <li>One `.mcpack` or `.mcaddon`, up to 25 MB</li>
+            <li>Manifest, UUID, module, dependency, and script-entry checks</li>
+            <li>Nested-pack and unsafe-archive-path inspection</li>
+            <li>Prioritized Markdown report plus machine-readable JSON</li>
+          </ul>
+          <p class="boundary">Structural validation is not presented as universal in-game compatibility. The original is preserved.</p>
+          <a class="button" href="https://github.com/guojialun11619/service-proof-kit/tree/main/bedrock-audit">Inspect the proof</a>
+        </article>
+        <article class="card">
+          <div class="tag">Tabular data</div>
+          <h3>Quick Data Rescue</h3>
+          <p class="price">CAD $35 pilot</p>
+          <ul>
+            <li>One CSV, up to 500 rows and 15 columns</li>
+            <li>Up to three deterministic cleanup rules</li>
+            <li>Exact deduplication on an approved key</li>
+            <li>Clean CSV, JSON change report, and SHA-256 receipts</li>
+          </ul>
+          <p class="boundary">Ambiguous values and formula-like cells are flagged, not guessed or silently executed.</p>
+          <a class="button" href="https://github.com/guojialun11619/service-proof-kit/tree/main/csv-cleanup">Inspect the proof</a>
+        </article>
+      </section>
+      <section class="section">
+        <h2>How a pilot works</h2>
+        <div class="steps">
+          <div class="step"><strong>Confirm</strong><p>Define the input, output, exclusions, deadline, and acceptance checks.</p></div>
+          <div class="step"><strong>Preserve</strong><p>Hash the input and work on a copy. No account passwords or OTPs.</p></div>
+          <div class="step"><strong>Verify</strong><p>Run reproducible checks and record exceptions instead of hiding them.</p></div>
+          <div class="step"><strong>Deliver</strong><p>Return the result, report, hashes, and concise next actions.</p></div>
+        </div>
+      </section>
+      <section class="cta">
+        <h2>Start with a safe inquiry</h2>
+        <p>Describe the file type, size, deadline, and desired outcome. Do not attach private files, credentials, payment details, or sensitive personal data to a public issue.</p>
+        <a class="button" href="https://github.com/guojialun11619/service-proof-kit/issues/new?title=Service%20inquiry%3A%20">Open a service inquiry</a>
+      </section>
+    </div>
+  </main>
+  <footer>Public proof code is MIT-licensed. Service scope and deliverables are agreed separately.</footer>
+</body>
+</html>
