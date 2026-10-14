@@ -1,0 +1,36 @@
+{
+  "input": "/Users/Gary11619/Documents/Codex/2026-10-14/files-pasted-by-the-user-codex/work/csv-cleanup-sprint/example-input.csv",
+  "output": "/Users/Gary11619/Documents/Codex/2026-10-14/files-pasted-by-the-user-codex/work/csv-cleanup-sprint/example-clean.csv",
+  "input_sha256": "eb0e9168258c21c53f98feb8b2c21e444fa818732194d154650ea79e5d66f73a",
+  "output_sha256": "b2ccbc72423f1ac4c9a2aa43d481572a093fc562f175b8f6209901611728fddb",
+  "rows_in": 3,
+  "rows_out": 2,
+  "headers": [
+    "email",
+    "name",
+    "note"
+  ],
+  "dedupe_columns": [
+    "email"
+  ],
+  "changes": {
+    "duplicates_removed": 1,
+    "normalized_blank": 2,
+    "trimmed_whitespace": 2
+  },
+  "removed_duplicates": [
+    {
+      "source_row": 3,
+      "dedupe_key": {
+        "email": "alex@example.com"
+      }
+    }
+  ],
+  "exceptions": [],
+  "policy": {
+    "whitespace": "Trim leading/trailing whitespace in every cell.",
+    "blanks": "Convert case-insensitive N/A, NA, NULL, and NONE to empty.",
+    "dedupe": "Keep the first exact normalized non-blank match on the selected key; preserve all-blank keys; do not fuzzy-match or guess.",
+    "formula_safety": "Flag cells beginning with =, +, -, or @ for review; preserve their values instead of guessing intent."
+  }
+}
