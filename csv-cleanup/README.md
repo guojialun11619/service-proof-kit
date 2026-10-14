@@ -17,3 +17,5 @@ python3 -m unittest -v
 ```
 
 No third-party packages are required.
+
+Use `CLIENT_INTAKE.md` to lock the duplicate key, blank tokens, locale, sensitive-data boundary, and acceptance examples before receiving a real file. Use `DELIVERY_TEMPLATE.md` to reconcile counts, flags, hashes, and retention status without overstating the result.
