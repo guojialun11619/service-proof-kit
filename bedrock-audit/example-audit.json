@@ -1,0 +1,40 @@
+{
+  "input": "/Users/Gary11619/Documents/Codex/2026-10-14/files-pasted-by-the-user-codex/work/bedrock-addon-audit/example.mcpack",
+  "valid_zip": true,
+  "packs": [
+    {
+      "root": "example/",
+      "name": "Example Behavior Pack",
+      "uuid": "5f07f207-1e06-49ef-b6f1-daf4cfbc97a0",
+      "version": [
+        1,
+        0,
+        0
+      ],
+      "module_types": [
+        "data"
+      ],
+      "min_engine_version": [
+        1,
+        20,
+        0
+      ],
+      "dependency_uuids": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "INFO",
+      "code": "PACK_ICON_MISSING",
+      "location": "example/manifest.json",
+      "message": "pack_icon.png is missing; Minecraft will use a default icon.",
+      "remediation": ""
+    }
+  ],
+  "summary": {
+    "ERROR": 0,
+    "WARN": 0,
+    "INFO": 1
+  },
+  "grade": "PASS"
+}

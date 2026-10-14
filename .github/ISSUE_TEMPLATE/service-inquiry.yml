@@ -1,0 +1,48 @@
+name: Service inquiry
+description: Ask whether a bounded Bedrock audit or CSV cleanup pilot fits your case.
+title: "Service inquiry: "
+labels: ["service inquiry"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe only non-sensitive scope information. Do not attach files, credentials, payment details, private links, or personal data here. An inquiry is not an order.
+  - type: dropdown
+    id: service
+    attributes:
+      label: Service
+      options:
+        - Bedrock add-on audit
+        - CSV cleanup pilot
+    validations:
+      required: true
+  - type: input
+    id: size
+    attributes:
+      label: Non-sensitive size summary
+      description: For example, one 8 MB .mcaddon or one 300-row, 12-column CSV.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome and acceptance check
+      description: Explain what a successful result would look like without sharing private content.
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: Deadline and time zone
+      placeholder: 2026-10-16 17:00 America/Toronto
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Public issue acknowledgement
+      options:
+        - label: I have not included files, secrets, credentials, payment details, private links, or personal data.
+          required: true
+        - label: I understand this inquiry is not an order or guarantee of availability.
+          required: true
